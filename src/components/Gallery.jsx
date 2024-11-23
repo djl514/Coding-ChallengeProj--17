@@ -36,6 +36,7 @@ function Gallery(){
     return (
         <div>   
             <h1>Tour Comparison Gallery App</h1>
+            
                 {/* maps the galler to a table for each key ID */}
                 {gallery.map(gall => (
                     <div key={gall.id}>
@@ -50,11 +51,9 @@ function Gallery(){
 
                         </div></center>
                         <center>
-                            <li>Price: ${gall.price}</li>
+                        <h3><b>Price:</b> ${gall.price}</h3>
                         </center>
-
                         <Button key={gall.id} {...gall}/>
-                        
 
                         {/* Button to read more or less information */}
                         <br></br>

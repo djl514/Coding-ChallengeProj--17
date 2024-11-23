@@ -83,7 +83,8 @@ div.container {
   padding: 10px 20px;
 }
 
-li {
-  list-style-type: none;
+h3 {
+  border-style: dotted;
+  width: 20%;
+  border-color: green;
 }
-
