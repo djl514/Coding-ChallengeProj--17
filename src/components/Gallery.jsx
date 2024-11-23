@@ -19,7 +19,7 @@ function Gallery(){
           })
           .catch(error => {
             alert (`Error: ${error}`)
-
+            
             .finally(() => {
                 <div><h2>
                     Page Loading...
@@ -41,6 +41,7 @@ function Gallery(){
                 {gallery.map(gall => (
                     <div key={gall.id}>
                         {/* Grabs image */}
+                        
                         <center>
                             {/* Classes create a poloroid type look for the images */}
                             <div className = "polaroid">
