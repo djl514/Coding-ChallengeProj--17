@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
+
+// Function creates individual states for each button allowing it to dynamically render
 const Button = ({ info, id }) => {
     const [information, setInformation] = useState(false);
     
-
-
     return (
         <div>
         <li key={id}>
