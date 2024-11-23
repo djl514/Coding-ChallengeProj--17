@@ -83,3 +83,7 @@ div.container {
   padding: 10px 20px;
 }
 
+li {
+  list-style-type: none;
+}
+

@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
+import Button from "./Button";
 
 function Gallery(){
     // sets a useState for an empty array for the API
     const [gallery, setGallery] = useState([]);
-    const [information, setInformation] = useState(false);
+
 
 
     // useEffect is used to fetch the API and JSON to allow use of the data 
     // Catches and alets error and displays a loading message
     useEffect(() => {
-        fetch('https://api.allorigins.win/get?url=https://course-api.com/react-tours-project')
+        const url = 'https://api.allorigins.win/get?url=https://course-api.com/react-tours-project';
+        fetch(url)
           .then(response => response.json())
           
           .then(data => {
@@ -23,49 +25,42 @@ function Gallery(){
                     Page Loading...
                 </h2></div>
             })
-          })
+          });
         }, []);
 
-        //Used in the Not Interested button to remove a tour from the list
+        // handles the Not Interested button to remove a tour from the list
         function handleInterest(id){
             setGallery(gallery.filter(tour => tour.id !== id));
             console.log(`Tour ${id} Removed`)
         };
-
-    // return statement
     return (
-        <div>
-            <h1>Tour Management Gallery</h1>
+        <div>   
+            <h1>Tour Comparison Gallery App</h1>
                 {/* maps the galler to a table for each key ID */}
                 {gallery.map(gall => (
-                    <table key={gall.id}>
+                    <div key={gall.id}>
                         {/* Grabs image */}
-                        <center><tr><div className = "polaroid"><img src={gall.image} alt= {`Tour ${gall.id}`} />
-                        
-                        <div className = "container">
-                            <h2>{gall.name}</h2>
-                        </div>
-
-                        </div></tr></center>
                         <center>
-                            <tr><td>Price:</td>
-                            <td>${gall.price}</td></tr>
+                            {/* Classes create a poloroid type look for the images */}
+                            <div className = "polaroid">
+                            <div className = "container">
+                            <h2>{gall.name}</h2></div>
+                        <img src={gall.image} 
+                        alt= {`Tour ${gall.id}`} />
+
+                        </div></center>
+                        <center>
+                            <li>Price: ${gall.price}</li>
                         </center>
 
-                        {/* Button for toggling more/less information */}
-                        <tr>
-                            {information ? gall.info : `${gall.info.substring(0,250)}...`}
-                            <button onClick={() => setInformation(!information)}>
-                                {information ? "Show Less" : "Read More"}
-                            </button>
-                        </tr>
-                      
-
+                        <Button key={gall.id} {...gall}/>
                         
+
+                        {/* Button to read more or less information */}
                         <br></br>
-                        <tr><button onClick={() => handleInterest(gall.id)}>Not Interested</button></tr>
+                        <button onClick={() => handleInterest(gall.id)}>Not Interested</button>
                         <hr></hr>
-                    </table>
+                    </div>
                 ))}
         </div>
     );
